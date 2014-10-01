@@ -198,14 +198,6 @@
      <Compile Include="Assets\Scenes\Game\Note.cs" />
      <Compile Include="Assets\Scenes\Game\TubeDownloader.cs" />
      <Compile Include="Assets\Scenes\Game\debugLabel.cs" />
-     <Compile Include="Assets\Scenes\Game_miyashita\Managers\CameraManager.cs" />
-     <Compile Include="Assets\Scenes\Game_miyashita\Managers\FingerManager.cs" />
-     <Compile Include="Assets\Scenes\Game_miyashita\Managers\GameManager.cs" />
-     <Compile Include="Assets\Scenes\Game_miyashita\Managers\NoteManager.cs" />
-     <Compile Include="Assets\Scenes\Game_miyashita\MusicData.cs" />
-     <Compile Include="Assets\Scenes\Game_miyashita\Note.cs" />
-     <Compile Include="Assets\Scenes\Game_miyashita\TubeDownloader.cs" />
-     <Compile Include="Assets\Scenes\Game_miyashita\debugLabel.cs" />
      <Compile Include="Assets\ScreenUtil\AspectAdjuster.cs" />
      <Compile Include="Assets\ScreenUtil\DeadTimeCS.cs" />
      <Compile Include="Assets\ScreenUtil\ScreenUtil.cs" />
