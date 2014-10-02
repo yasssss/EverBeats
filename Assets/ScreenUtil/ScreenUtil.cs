@@ -434,5 +434,17 @@ public class ScreenUtil : MonoBehaviour {
 		}
 		return d;
 	}
-
+	
+	static public GameObject findObject(Transform t,string name){
+		if (t.gameObject.name.Equals (name)) {
+			return t.gameObject;
+		}
+		for (int i=0 ; i<t.childCount ; i++ ){
+			GameObject obj = findObject(t.GetChild(i),name);
+			if (obj != null){
+				return obj;
+			}
+		}
+		return null;
+	}
 }

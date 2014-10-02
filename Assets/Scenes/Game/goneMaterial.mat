@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: goneMaterial
-  m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 10512, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -17,14 +17,41 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 20f7cab44eaf6e849a8b7131f390055a, type: 3}
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Cube
+        second:
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
+          name: _Cutoff
+        second: .899999976
+      data:
+        first:
           name: _InvFade
         second: 1
+      data:
+        first:
+          name: _Shininess
+        second: 15
+      data:
+        first:
+          name: _RefractiveStrength
+        second: 1
+      data:
+        first:
+          name: _RimPower
+        second: 1
+      data:
+        first:
+          name: _ColorIntensity
+        second: 3
     m_Colors:
       data:
         first:
@@ -34,3 +61,11 @@ Material:
         first:
           name: _TintColor
         second: {r: .507352948, g: .507352948, b: .507352948, a: .505882382}
+      data:
+        first:
+          name: _SpecColor
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _RimColor
+        second: {r: 1, g: 1, b: 1, a: 1}

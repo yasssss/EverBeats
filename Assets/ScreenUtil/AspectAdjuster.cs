@@ -7,12 +7,12 @@ public class AspectAdjuster : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		camera = GetComponent<Camera> ();
+		adjustScreenSize (16.0f / 9.0f);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
-		adjustScreenSize (16.0f / 9.0f);
+
 	}
 	
 	public void adjustScreenSize( float aspect ){

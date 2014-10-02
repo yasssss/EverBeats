@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class MusicData {
+
 	public List<NoteData> notes;
 
 
@@ -30,21 +31,26 @@ public class MusicData {
 	}
 
 	public class NoteData {
+		public enum NotePhase { Normal , Great , Ok , Bad , Miss};
+
 		public float time;
 		public float offset;
 
 		/* modifiable */
 		public GameObject gameObject;
-		public bool isDead;
+		public NotePhase phase;
+		public Vector3 tappedPosition;
+		public float tappedTime;
+
 
 		public NoteData (){
-			isDead = false;
+			phase = NotePhase.Normal;
 		}
 		public NoteData (string data){
 			string[] arr = data.Split(new string[]{ "," } , System.StringSplitOptions.None);
 			time = float.Parse(arr[0]);
 			offset = float.Parse(arr[1]);
-			isDead = false;
+			phase = NotePhase.Normal;
 		}
 		public string ToString(){
 			return time + "," + offset;

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class NoteManager : MonoBehaviour {
 	static private float REMOVE_OFFSET_TIME = 1;
 	static private float OK_TIME 		= 0.1f;
+	static private float GREAT_TIME 	= 0.05f;
 	static private float OK_DISTANCE	= 0.2f;
 
 
@@ -22,7 +23,7 @@ public class NoteManager : MonoBehaviour {
 	
 	public List< MusicData.NoteData> notes;
 	private int index;
-	private AudioSource audio;
+	public AudioSource audio;
 
 	// Use this for initialization
 	void Start () {
@@ -69,12 +70,22 @@ public class NoteManager : MonoBehaviour {
 	private void Move(){
 		foreach ( MusicData.NoteData note in notes ){
 			Vector3 pos = note.gameObject.transform.position;
-			note.gameObject.transform.position = new Vector3(  pos.x , 0 , (( left.position.z - generate.position.z ) * (1 - (note.time - audio.time)/ Interval )  )  + generate.position.z);
+			if (note.phase == MusicData.NoteData.NotePhase.Normal){
+				note.gameObject.transform.position = new Vector3(  pos.x , 0 , (( left.position.z - generate.position.z ) * (1 - (note.time - audio.time)/ Interval )  )  + generate.position.z);
+			}else if (note.phase == MusicData.NoteData.NotePhase.Miss){
+				note.gameObject.transform.position = note.tappedPosition - Vector3.forward * ( audio.time - note.tappedTime) * 1;
+			}else{
+				/* do nothing */
+			}
 		}
 		notes.RemoveAll ( ( MusicData.NoteData note )=>{
-			if ( note.time + REMOVE_OFFSET_TIME < audio.time){
+			if ( note.time + REMOVE_OFFSET_TIME < audio.time ){
 				Destroy(note.gameObject);
 				return true;
+			}
+			if ( note.time < audio.time && note.phase == MusicData.NoteData.NotePhase.Normal ){
+				note.gameObject.GetComponent<Note>().failed();
+				note.phase = MusicData.NoteData.NotePhase.Miss;
 			}
 			return false;
 		});
@@ -82,11 +93,16 @@ public class NoteManager : MonoBehaviour {
 	public void pushNote( float offset ){
 		// get the note
 		foreach ( MusicData.NoteData note in music.notes ){
-			if ( Mathf.Abs(note.time - audio.time) < OK_TIME && !note.isDead ){
-				if (  Mathf.Abs(note.offset - offset) < OK_DISTANCE ){
-					//Hit
-					note.gameObject.GetComponent<Note>().tapped();
-					break;
+			if (note.phase == MusicData.NoteData.NotePhase.Normal || note.phase == MusicData.NoteData.NotePhase.Miss){
+				if ( Mathf.Abs(note.time - audio.time) < OK_TIME  ){
+					if (  Mathf.Abs(note.offset - offset) < OK_DISTANCE ){
+						if (Mathf.Abs(note.time - audio.time) < GREAT_TIME){
+							note.gameObject.GetComponent<Note>().tapped( MusicData.NoteData.NotePhase.Great );
+						}else{
+							note.gameObject.GetComponent<Note>().tapped( MusicData.NoteData.NotePhase.Ok );
+						}
+						break;
+					}
 				}
 			}
 		}
