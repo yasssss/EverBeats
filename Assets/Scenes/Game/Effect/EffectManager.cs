@@ -26,7 +26,7 @@ public class EffectManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		int frame = Mathf.FloorToInt ((Time.time - generatedTime) / interval);
-		if (frame == FrameNum){
+		if (frame >= FrameNum){
 			if (isRepeat){
 				generatedTime = Time.time;
 			}else{
@@ -34,7 +34,6 @@ public class EffectManager : MonoBehaviour {
 			}
 			return;
 		}
-
 		int x = frame % rowNum;
 		int y = frame / rowNum;
 

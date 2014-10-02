@@ -43,9 +43,9 @@ MonoBehaviour:
   mSprites:
   - name: back
     x: 0
-    y: 1471
-    width: 1024
-    height: 577
+    y: 1408
+    width: 1136
+    height: 640
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -55,7 +55,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: mini
-    x: 1666
+    x: 1778
     y: 2013
     width: 35
     height: 35
@@ -68,7 +68,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: upper
-    x: 1025
+    x: 1137
     y: 1889
     width: 640
     height: 159

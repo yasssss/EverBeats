@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class MusicData {
 
 	public List<NoteData> notes;
-
+	public float length = 100;
 
 	static public MusicData testnotes(){
 		return new MusicData( ((TextAsset)Resources.Load("note_sample")).text );
