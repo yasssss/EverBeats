@@ -3,8 +3,9 @@ using System.Collections;
 
 public class Note : MonoBehaviour {
 	public MusicData.NoteData data;
-	public Material goneMaterial;
+	public Material greatMaterial;
 	public Material failedMaterial;
+	public Material okMaterial;
 	public GameObject effectPrehab;
 
 	// Use this for initialization
@@ -23,24 +24,28 @@ public class Note : MonoBehaviour {
 
 		Vector3 correctPos = getCorrectPos ();
 		Instantiate (effectPrehab , correctPos , Quaternion.Euler(new Vector3( 50.0f ,0 , 0)));
-		gameObject.renderer.material = goneMaterial;
 
 		if (ScreenUtil.findObject (transform, "flare") != null){
 			Destroy(ScreenUtil.findObject (transform, "flare"));
 		}
-		iTween.FadeTo(gameObject, iTween.Hash("alpha", 0, "time", 0.5f));
-		iTween.ScaleTo(gameObject, iTween.Hash("x", 1.5f, "time", 0.5f));
 
-		if (phase == MusicData.NoteData.NotePhase.Great){
+		if (phase == MusicData.NoteData.NotePhase.Great) {
 			transform.position = correctPos;
+			gameObject.renderer.material = greatMaterial;
+			iTween.ScaleTo (gameObject, iTween.Hash ("x", 1.5f, "time", 0.5f));
+		} else {
+			gameObject.renderer.material = okMaterial;
 		}
+		iTween.FadeTo(gameObject, iTween.Hash("alpha", 0, "time", 0.5f));
 	}
 	
-	public void failed(){
+	public void missed(){
 		data.tappedTime = NoteManager.manager.audio.time;
 		data.tappedPosition = getCorrectPos ();
 		gameObject.renderer.material = failedMaterial;
 		Destroy(ScreenUtil.findObject (transform, "flare"));
+	}
+	public void failed(){
 		iTween.FadeTo(gameObject, iTween.Hash("alpha", 0, "time", 0.5f));
 	}
 

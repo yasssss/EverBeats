@@ -72,7 +72,7 @@ public class NoteManager : MonoBehaviour {
 			Vector3 pos = note.gameObject.transform.position;
 			if (note.phase == MusicData.NoteData.NotePhase.Normal){
 				note.gameObject.transform.position = new Vector3(  pos.x , 0 , (( left.position.z - generate.position.z ) * (1 - (note.time - audio.time)/ Interval )  )  + generate.position.z);
-			}else if (note.phase == MusicData.NoteData.NotePhase.Miss){
+			}else if (note.phase == MusicData.NoteData.NotePhase.Miss || note.phase == MusicData.NoteData.NotePhase.Bad){
 				note.gameObject.transform.position = note.tappedPosition - Vector3.forward * ( audio.time - note.tappedTime) * 1;
 			}else{
 				/* do nothing */
@@ -84,8 +84,13 @@ public class NoteManager : MonoBehaviour {
 				return true;
 			}
 			if ( note.time < audio.time && note.phase == MusicData.NoteData.NotePhase.Normal ){
-				note.gameObject.GetComponent<Note>().failed();
+				note.gameObject.GetComponent<Note>().missed();
 				note.phase = MusicData.NoteData.NotePhase.Miss;
+			}
+			if ( note.time + OK_TIME < audio.time && note.phase == MusicData.NoteData.NotePhase.Miss){
+				note.gameObject.GetComponent<Note>().failed();
+				note.phase = MusicData.NoteData.NotePhase.Bad;
+
 			}
 			return false;
 		});

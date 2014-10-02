@@ -207,8 +207,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1169fc8211edb4d8eb041dc529bc9a48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goneMaterial: {fileID: 2100000, guid: 0167ff6600d4a488f90d6172842c4516, type: 2}
+  greatMaterial: {fileID: 2100000, guid: 0167ff6600d4a488f90d6172842c4516, type: 2}
   failedMaterial: {fileID: 2100000, guid: 3ab50862e33ac4806ba07404744f5473, type: 2}
+  okMaterial: {fileID: 2100000, guid: 03d801de609df4f9faaf90f27ae8a77b, type: 2}
   effectPrehab: {fileID: 100000, guid: 21dd7f8f000384300a7be3fd294a36db, type: 2}
 --- !u!1001 &100100000
 Prefab:
